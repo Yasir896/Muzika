@@ -1,2 +1,2 @@
 # Muzika
-Music Player with Jetpack compose
+Music Player with Jetpack compose and Exo Player.
