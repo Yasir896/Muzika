@@ -18,7 +18,9 @@ import com.techlads.muzika.R
 import com.techlads.muzika.features.presentation.HomeTopBar
 
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    onMenuClick: () -> Unit
+) {
 
     val songs = arrayOf(
         Song(image = R.drawable.card_placeholder, songName = "Monsters Go Bump", singerName = "ERIKA RECINOS"),
@@ -39,7 +41,7 @@ fun HomeScreen() {
                 .background(MaterialTheme.colors.primary)
         ) {
             HomeTopBar(
-                onMenuClick = { },
+                onMenuClick = { onMenuClick() },
                 onSearchClick = { },
                 modifier = Modifier.fillMaxWidth())
 
@@ -86,6 +88,6 @@ fun HomeScreen() {
 @Preview
 fun PreviewHomeScreen() {
     MaterialTheme {
-        HomeScreen()
+        HomeScreen() { }
     }
 }
