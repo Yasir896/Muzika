@@ -5,13 +5,26 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.techlads.muzika.R
 import com.techlads.muzika.features.presentation.components.MediumSpacer
+import com.techlads.muzika.features.presentation.components.PlayerSlider
 import com.techlads.muzika.features.presentation.components.TopBarWithNav
 
+@ExperimentalPagerApi
 @Composable
 fun PlayerScreen(
     onNavigationClick: () -> Unit
 ) {
+
+    val sliderList = arrayOf(
+        R.drawable.believer,
+        R.drawable.card_placeholder,
+        R.drawable.moment_apart,
+        R.drawable.believer,
+        R.drawable.card_placeholder,
+
+        )
 
     Box(
         modifier = Modifier
@@ -31,6 +44,8 @@ fun PlayerScreen(
                 modifier = Modifier.fillMaxWidth()
             )
             MediumSpacer()
+
+            PlayerSlider(sliderList)
         }
     }
 }

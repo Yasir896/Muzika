@@ -13,7 +13,7 @@ import com.techlads.muzika.features.presentation.player.PlayerScreen
 @ExperimentalAnimationApi
 @Composable
 fun AppNavigation(navController: NavHostController) {
-    AnimatedNavHost(navController = navController, startDestination =Screens.HomeScreen.route) {
+    AnimatedNavHost(navController = navController, startDestination = Screens.HomeScreen.route) {
 
         composable(route = Screens.HomeScreen.route,
             enterTransition = { EnterTransition.None },
@@ -25,11 +25,11 @@ fun AppNavigation(navController: NavHostController) {
         }
 
         composable(route = Screens.LikedSongsScreen.route,
-                enterTransition = { tabEnterTransition() },
+            enterTransition = { tabEnterTransition() },
             exitTransition = { tabExitTransition() }) {
             LikedSongsScreen(
                 onNavigationClick = { navController.popBackStack() },
-                onSongItemClick = { navController.navigate(Screens.PlayerScreen.route)}
+                onSongItemClick = { navController.navigate(Screens.PlayerScreen.route) }
             )
         }
 
@@ -46,4 +46,4 @@ fun AppNavigation(navController: NavHostController) {
 }
 
 private fun tabExitTransition() = slideOutHorizontally(targetOffsetX = { 4000 })
-private fun tabEnterTransition() = slideInHorizontally( initialOffsetX = { 4000 })
+private fun tabEnterTransition() = slideInHorizontally(initialOffsetX = { 4000 })
