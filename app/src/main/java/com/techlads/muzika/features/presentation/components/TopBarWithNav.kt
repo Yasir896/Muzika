@@ -18,7 +18,7 @@ import com.techlads.muzika.R
 fun TopBarWithNav(
     title: String = "",
     color: Color = MaterialTheme.colors.primary,
-    onMenuClick: () -> Unit,
+    onNavigationClick: () -> Unit,
     onFilterClick: () -> Unit,
     showFilterIcon: Boolean = false,
     modifier: Modifier
@@ -39,11 +39,11 @@ fun TopBarWithNav(
                     LocalContentAlpha provides ContentAlpha.high,
                 ) {
                     IconButton(
-                        onClick = onMenuClick,
+                        onClick = onNavigationClick,
                         enabled = true,
                     ) {
                         Icon(
-                            painter = painterResource(id = R.drawable.ic_menu),
+                            painter = painterResource(id = R.drawable.ic_arrow_right),
                             contentDescription = "menu",
                             tint = MaterialTheme.colors.secondary,
                         )

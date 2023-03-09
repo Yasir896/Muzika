@@ -16,17 +16,27 @@ import com.techlads.muzika.features.presentation.components.MediumSpacer
 import com.techlads.muzika.features.presentation.components.SongCard
 import com.techlads.muzika.R
 import com.techlads.muzika.features.presentation.HomeTopBar
+import com.techlads.muzika.features.presentation.components.SmallSpacer
 
 @Composable
 fun HomeScreen(
-    onMenuClick: () -> Unit
+    onMenuClick: () -> Unit,
+    onSongItemClick: () -> Unit
 ) {
 
     val songs = arrayOf(
-        Song(image = R.drawable.card_placeholder, songName = "Monsters Go Bump", singerName = "ERIKA RECINOS"),
+        Song(
+            image = R.drawable.card_placeholder,
+            songName = "Monsters Go Bump",
+            singerName = "ERIKA RECINOS"
+        ),
         Song(image = R.drawable.moment_apart, songName = "Moment Apart", singerName = "ODESZA"),
         Song(image = R.drawable.believer, songName = "Believer", singerName = "IMAGINE DRAGON"),
-        Song(image = R.drawable.card_placeholder, songName = "Monsters Go Bump", singerName = "ERIKA RECINOS"),
+        Song(
+            image = R.drawable.card_placeholder,
+            songName = "Monsters Go Bump",
+            singerName = "ERIKA RECINOS"
+        ),
         Song(image = R.drawable.moment_apart, songName = "Moment Apart", singerName = "ODESZA"),
         Song(image = R.drawable.believer, songName = "Believer", singerName = "IMAGINE DRAGON"),
     )
@@ -43,7 +53,8 @@ fun HomeScreen(
             HomeTopBar(
                 onMenuClick = { onMenuClick() },
                 onSearchClick = { },
-                modifier = Modifier.fillMaxWidth())
+                modifier = Modifier.fillMaxWidth()
+            )
 
             MediumSpacer()
 
@@ -57,9 +68,10 @@ fun HomeScreen(
             LazyRow(
                 Modifier
                     .aspectRatio(1.5f, false)
-                    .padding(horizontal = 8.dp)) {
-                items(songs.size) {song ->
-                    SongCard(song = songs[song], onItemClick = { })
+                    .padding(horizontal = 8.dp)
+            ) {
+                items(songs.size) { song ->
+                    SongCard(song = songs[song], onItemClick = onSongItemClick)
                 }
             }
 
@@ -71,12 +83,13 @@ fun HomeScreen(
                 fontSize = 24.sp,
                 fontWeight = FontWeight.W700,
             )
-            Spacer(modifier = Modifier.height(8.dp))
+            SmallSpacer()
             LazyRow(
                 Modifier
                     .aspectRatio(1.5f, false)
-                    .padding(horizontal = 8.dp)) {
-                items(songs.size) {song ->
+                    .padding(horizontal = 8.dp)
+            ) {
+                items(songs.size) { song ->
                     SongCard(song = songs[song], onItemClick = { })
                 }
             }
@@ -88,6 +101,9 @@ fun HomeScreen(
 @Preview
 fun PreviewHomeScreen() {
     MaterialTheme {
-        HomeScreen() { }
+        HomeScreen(
+            onMenuClick = {},
+            onSongItemClick = { }
+        )
     }
 }
