@@ -77,24 +77,3 @@ fun PlayerSlider(sliderList: Array<Int>) {
         }
     }
 }
-
-
-@OptIn(ExperimentalPagerApi::class)
-@Composable
-@Preview
-fun PreviewSlider() {
-    MaterialTheme() {
-        Box(modifier = Modifier.padding(vertical = 16.dp)) {
-            val sliderList = arrayOf(
-                R.drawable.believer,
-                R.drawable.card_placeholder,
-                R.drawable.moment_apart,
-                R.drawable.believer,
-                R.drawable.card_placeholder,
-
-                )
-            PlayerSlider(sliderList)
-        }
-
-    }
-}

@@ -6,10 +6,12 @@ import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.pager.ExperimentalPagerApi
 import com.techlads.muzika.features.presentation.home.HomeScreen
 import com.techlads.muzika.features.presentation.liked_songs.LikedSongsScreen
 import com.techlads.muzika.features.presentation.player.PlayerScreen
 
+@OptIn(ExperimentalPagerApi::class)
 @ExperimentalAnimationApi
 @Composable
 fun AppNavigation(navController: NavHostController) {

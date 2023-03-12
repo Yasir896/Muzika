@@ -10,6 +10,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -30,7 +31,8 @@ fun SongCard(
     Card(
         shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
         backgroundColor = MaterialTheme.colors.primary,
-        modifier = modifier.aspectRatio(aspectRatio)
+        modifier = modifier
+            .aspectRatio(aspectRatio)
             .padding(horizontal = 8.dp)
             .clickable {
                 onItemClick()
@@ -45,18 +47,18 @@ fun SongCard(
                 contentScale = ContentScale.FillWidth,
                 modifier = Modifier.fillMaxWidth())
 
-            Spacer(modifier = Modifier.height(8.dp))
+            SmallSpacer()
             
             Text(text = song.songName,
                 fontSize = 16.sp,
                 color = MaterialTheme.colors.secondary,
                 fontWeight = FontWeight.W500)
 
-            Spacer(modifier = Modifier.height(8.dp))
+            SmallSpacer()
 
             Text(text = song.singerName,
                 fontSize = 10.sp,
-                color = MaterialTheme.colors.secondary,
+                color = Color(0x5FA5C0FF),
                 fontWeight = FontWeight.W400)
         }
     }
