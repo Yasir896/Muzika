@@ -18,7 +18,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.techlads.muzika.R
-import com.techlads.muzika.features.data.Song
+import com.techlads.muzika.features.data.model.Song
 
 @Composable
 fun SongCard(

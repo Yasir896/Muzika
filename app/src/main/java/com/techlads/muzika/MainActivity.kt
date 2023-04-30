@@ -12,8 +12,10 @@ import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.techlads.muzika.features.presentation.home.HomeScreen
 import com.techlads.muzika.navigation.AppNavigation
 import com.techlads.muzika.ui.theme.MuzikaTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 @ExperimentalAnimationApi
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -11,7 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.techlads.muzika.features.data.Song
+import com.techlads.muzika.features.data.model.Song
 import com.techlads.muzika.features.presentation.components.MediumSpacer
 import com.techlads.muzika.features.presentation.components.SongCard
 import com.techlads.muzika.R

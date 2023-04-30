@@ -1,4 +1,4 @@
-package com.techlads.muzika.features.data
+package com.techlads.muzika.features.data.model
 
 data class Song(
     val image: Int,
