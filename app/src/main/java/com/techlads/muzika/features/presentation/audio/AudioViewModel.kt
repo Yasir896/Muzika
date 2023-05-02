@@ -25,7 +25,7 @@ class AudioViewModel @Inject constructor(
     serviceConnection: MediaPlayerServiceConnection
 ):ViewModel() {
 
-    private val audioList = mutableStateListOf<Audio>()
+     val audioList = mutableStateListOf<Audio>()
     val currentPlayingAudio = serviceConnection.currentPlayingAudio
     private val isConnected = serviceConnection.isConnected
     lateinit var rootMediaId: String
@@ -46,10 +46,13 @@ class AudioViewModel @Inject constructor(
     }
 
     private val serviceConnection = serviceConnection.also {
-
+        updatePlayBack()
     }
 
-    val currentDuration = MediaPlayerService.currentDuration
+    val currentDuration: Long
+        get() = MediaPlayerService.currentDuration
+
+
     var currentAudioProgress = mutableStateOf(0f)
 
     init {
