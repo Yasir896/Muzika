@@ -26,111 +26,15 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.net.toUri
+import androidx.hilt.navigation.compose.hiltViewModel
+import com.techlads.muzika.featu.AudioViewModel
 import com.techlads.muzika.features.data.model.Audio
+import com.techlads.muzika.features.presentation.PreviewUtils
+import com.techlads.muzika.features.presentation.PreviewUtils.dummyAudioList
 import com.techlads.muzika.ui.theme.MuzikaTheme
 
 
-private val dummyAudioList = listOf(
-    Audio(
-        uri = "".toUri(),
-        displayName = "Kotlin Programming",
-        id = 0L,
-        artist = "Ghost",
-        data = "",
-        duration = 12345,
-        title = "Android Programming"
-    ),
-    Audio(
-        uri = "".toUri(),
-        displayName = "Kotlin Programming",
-        id = 0L,
-        artist = "Youtube",
-        data = "",
-        duration = 12345,
-        title = "Android Programming"
-    ),
-    Audio(
-        uri = "".toUri(),
-        displayName = "Kotlin Programming",
-        id = 0L,
-        artist = "Android",
-        data = "",
-        duration = 12345,
-        title = "Android Programming"
-    ),
-    Audio(
-        uri = "".toUri(),
-        displayName = "Kotlin Programming",
-        id = 0L,
-        artist = "PL Coding",
-        data = "",
-        duration = 12345,
-        title = "Android Programming"
-    ),
-    Audio(
-        uri = "".toUri(),
-        displayName = "Kotlin Programming",
-        id = 0L,
-        artist = "Mitch",
-        data = "",
-        duration = 12345,
-        title = "Android Programming"
-    ),
-    Audio(
-        uri = "".toUri(),
-        displayName = "Kotlin Programming",
-        id = 0L,
-        artist = "Mosh",
-        data = "",
-        duration = 12345,
-        title = "Android Programming"
-    ),
-    Audio(
-        uri = "".toUri(),
-        displayName = "Kotlin Programming",
-        id = 0L,
-        artist = "Youtube",
-        data = "",
-        duration = 12345,
-        title = "Android Programming"
-    ),
-    Audio(
-        uri = "".toUri(),
-        displayName = "Kotlin Programming",
-        id = 0L,
-        artist = "Android",
-        data = "",
-        duration = 12345,
-        title = "Android Programming"
-    ),
-    Audio(
-        uri = "".toUri(),
-        displayName = "Kotlin Programming",
-        id = 0L,
-        artist = "PL Coding",
-        data = "",
-        duration = 12345,
-        title = "Android Programming"
-    ),
-    Audio(
-        uri = "".toUri(),
-        displayName = "Kotlin Programming",
-        id = 0L,
-        artist = "Mitch",
-        data = "",
-        duration = 12345,
-        title = "Android Programming"
-    ),
-    Audio(
-        uri = "".toUri(),
-        displayName = "Kotlin Programming",
-        id = 0L,
-        artist = "Mosh",
-        data = "",
-        duration = 12345,
-        title = "Android Programming"
-    ),
-)
+
 @ExperimentalMaterialApi
 @Composable
 fun HomeScreenNew(

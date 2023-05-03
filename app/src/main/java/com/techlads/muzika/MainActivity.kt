@@ -12,6 +12,7 @@ import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLifecycleOwner
@@ -64,7 +65,7 @@ class MainActivity : ComponentActivity() {
                         val audioViewModel = viewModel(
                             modelClass = AudioViewModel::class.java
                         )
-                        val audioList = audioViewModel.audioList
+                        val audioList = remember { audioViewModel.audioList }
                         HomeScreenNew(
                             progress = audioViewModel.currentAudioProgress.value,
                             onProgressChange = {

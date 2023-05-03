@@ -8,6 +8,7 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.techlads.muzika.features.presentation.home.HomeScreen
+import com.techlads.muzika.features.presentation.home.HomeScreenNew
 import com.techlads.muzika.features.presentation.liked_songs.LikedSongsScreen
 import com.techlads.muzika.features.presentation.player.PlayerScreen
 
@@ -20,11 +21,17 @@ fun AppNavigation(navController: NavHostController) {
         composable(route = Screens.HomeScreen.route,
             enterTransition = { EnterTransition.None },
             exitTransition = { ExitTransition.None }) {
+            //HomeScreenNew()
+        }
+
+        /*composable(route = Screens.HomeScreen.route,
+            enterTransition = { EnterTransition.None },
+            exitTransition = { ExitTransition.None }) {
             HomeScreen(
                 onMenuClick = { navController.navigate(Screens.LikedSongsScreen.route) },
                 onSongItemClick = { navController.navigate(Screens.PlayerScreen.route) }
             )
-        }
+        }*/
 
         composable(route = Screens.LikedSongsScreen.route,
             enterTransition = { tabEnterTransition() },
