@@ -90,11 +90,11 @@ fun AudioItem(
 ) {
 
     Card(
-        shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
+        //shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
         backgroundColor = MaterialTheme.colors.primary,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
+            .padding(2.dp)
             .clickable {
                 onItemClick.invoke(audio.id)
             },
@@ -174,7 +174,15 @@ fun BottomBarPlayer(
         }
         Slider(value = progress,
             onValueChange = { onProgressChange.invoke(it) },
-            valueRange = 0f..100f
+            valueRange = 0f..100f,
+            colors = SliderDefaults.colors(
+                thumbColor = Color.Black,
+                disabledThumbColor = Color.Blue.copy(0.5f),
+                activeTrackColor = Color.Black.copy(0.8f),
+                inactiveTrackColor = Color.Black.copy(0.2f),
+                activeTickColor = Color.Black.copy(0.8f),
+                inactiveTickColor = Color.Blue.copy(0.5f),
+            )
         )
     }
 }

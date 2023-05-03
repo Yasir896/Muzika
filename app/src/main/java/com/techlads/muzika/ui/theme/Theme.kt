@@ -28,7 +28,7 @@ fun MuzikaTheme(darkTheme: Boolean = true, content: @Composable () -> Unit) {
     }
 
     MaterialTheme(
-        colors = colors,
+        colors = LightColorPalette,
         typography = Typography,
         shapes = Shapes,
         content = content
