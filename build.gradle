@@ -11,7 +11,7 @@ plugins {
 }
 
 ext {
-    compose_version = '1.2.0'
+    compose_version = '1.4.3'
     lifecycleCompose = '2.6.1'
     navigation_compose_version = '2.5.3'
     navigation_animation_version = '0.28.0'

@@ -3,6 +3,7 @@ package com.techlads.muzika.features.presentation.home
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.ScrollableDefaults
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -72,12 +73,18 @@ fun HomeScreenNew(
         scaffoldState = scaffoldState,
         sheetPeekHeight = animatedHeight) {
         
-        LazyColumn(contentPadding = PaddingValues(bottom = 56.dp)) {
-            items(audioList){audio: Audio ->
+        LazyColumn(
+            flingBehavior = ScrollableDefaults.flingBehavior(),
+            userScrollEnabled = true,
+            contentPadding = PaddingValues(bottom = 56.dp)) {
+            items( count = audioList.size,
+                key = {audioList[it].id},
+            itemContent = {index ->
+                val audio = audioList[index]
                 AudioItem(
                     audio = audio,
                     onItemClick = { onItemClicked.invoke(audio)})
-            }
+            })
         }
     }
 }
