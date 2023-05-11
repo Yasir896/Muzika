@@ -45,7 +45,6 @@ internal class MediaPlayerNotificationManager(
 
         }
     }
-
     fun hideNotification() {
         notificationManager.setPlayer(null)
     }
