@@ -30,7 +30,6 @@ object MediaPlayerServiceModule {
             .setUsage(C.USAGE_MEDIA)
             .build()
 
-
     @Provides
     @ServiceScoped
     fun provideExoPlayer(
@@ -49,7 +48,6 @@ object MediaPlayerServiceModule {
         @ApplicationContext context: Context
     ) = DefaultDataSource.Factory(context)
 
-
     @Provides
     @ServiceScoped
     fun provideCacheDataSourceFactory(
@@ -57,9 +55,7 @@ object MediaPlayerServiceModule {
         dataSource: DefaultDataSource.Factory
     ): CacheDataSource.Factory {
         val cacheDir = File(context.cacheDir, "media")
-
         val databaseProvider = StandaloneDatabaseProvider(context)
-
         val cache = SimpleCache(cacheDir, NoOpCacheEvictor(),databaseProvider)
         return CacheDataSource.Factory().apply {
             setCache(cache)

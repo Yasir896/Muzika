@@ -73,7 +73,6 @@ class ContentResolverHelper @Inject constructor(@ApplicationContext val context:
                 }
             }
         }
-
         return audioList
     }
 }
