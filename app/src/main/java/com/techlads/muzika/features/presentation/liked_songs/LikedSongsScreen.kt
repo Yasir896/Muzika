@@ -26,15 +26,31 @@ fun LikedSongsScreen(
 ) {
 
     val songs = arrayOf(
-        Song(image = R.drawable.card_placeholder, songName = "Monsters Go Bump", singerName = "ERIKA RECINOS"),
+        Song(
+            image = R.drawable.card_placeholder,
+            songName = "Monsters Go Bump",
+            singerName = "ERIKA RECINOS"
+        ),
         Song(image = R.drawable.moment_apart, songName = "Moment Apart", singerName = "ODESZA"),
         Song(image = R.drawable.believer, songName = "Believer", singerName = "IMAGINE DRAGON"),
-        Song(image = R.drawable.card_placeholder, songName = "Monsters Go Bump", singerName = "ERIKA RECINOS"),
+        Song(
+            image = R.drawable.card_placeholder,
+            songName = "Monsters Go Bump",
+            singerName = "ERIKA RECINOS"
+        ),
         Song(image = R.drawable.moment_apart, songName = "Moment Apart", singerName = "ODESZA"),
-        Song(image = R.drawable.card_placeholder, songName = "Monsters Go Bump", singerName = "ERIKA RECINOS"),
+        Song(
+            image = R.drawable.card_placeholder,
+            songName = "Monsters Go Bump",
+            singerName = "ERIKA RECINOS"
+        ),
         Song(image = R.drawable.moment_apart, songName = "Moment Apart", singerName = "ODESZA"),
         Song(image = R.drawable.believer, songName = "Believer", singerName = "IMAGINE DRAGON"),
-        Song(image = R.drawable.card_placeholder, songName = "Monsters Go Bump", singerName = "ERIKA RECINOS"),
+        Song(
+            image = R.drawable.card_placeholder,
+            songName = "Monsters Go Bump",
+            singerName = "ERIKA RECINOS"
+        ),
     )
 
     Box(
@@ -62,16 +78,19 @@ fun LikedSongsScreen(
                 fontSize = 24.sp,
                 fontWeight = FontWeight.W700,
             )
-             SmallSpacer()
+            SmallSpacer()
 
             LazyVerticalGrid(
                 modifier = Modifier.testTag("songs_grid_view"),
                 columns = GridCells.Fixed(2),
-                content = { items(songs.size) {
-                    val song = songs[it]
-                    SongCard(song = song,
-                        onItemClick = onSongItemClick)
-                }
+                content = {
+                    items(songs.size) {
+                        val song = songs[it]
+                        SongCard(
+                            song = song,
+                            onItemClick = onSongItemClick
+                        )
+                    }
 
                 }
             )

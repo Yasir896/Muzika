@@ -31,7 +31,7 @@ import kotlinx.coroutines.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class MediaPlayerService: MediaBrowserServiceCompat() {
+class MediaPlayerService : MediaBrowserServiceCompat() {
 
 
     @Inject
@@ -113,11 +113,11 @@ class MediaPlayerService: MediaBrowserServiceCompat() {
         parentId: String,
         result: Result<MutableList<MediaBrowserCompat.MediaItem>>
     ) {
-        when(parentId) {
+        when (parentId) {
             Constant.MEDIA_ROOT_ID -> {
                 val resultsSent = mediaSource.whenReady { isInitialized ->
 
-                    if (isInitialized){
+                    if (isInitialized) {
                         result.sendResult(mediaSource.asMediaItem())
                     } else {
                         result.sendResult(null)
@@ -139,7 +139,7 @@ class MediaPlayerService: MediaBrowserServiceCompat() {
         result: Result<Bundle>
     ) {
         super.onCustomAction(action, extras, result)
-        when(action) {
+        when (action) {
             Constant.START_MEDIA_PLAY_ACTION -> {
                 mediaPlayerNotificationManager.showNotification(exoPlayer)
             }
@@ -147,7 +147,7 @@ class MediaPlayerService: MediaBrowserServiceCompat() {
                 mediaSource.refresh()
                 notifyChildrenChanged(Constant.MEDIA_ROOT_ID)
             }
-            else ->  Unit
+            else -> Unit
         }
     }
 
@@ -163,7 +163,7 @@ class MediaPlayerService: MediaBrowserServiceCompat() {
         exoPlayer.release()
     }
 
-    inner class PlayerNotificationListener: PlayerNotificationManager.NotificationListener {
+    inner class PlayerNotificationListener : PlayerNotificationManager.NotificationListener {
         override fun onNotificationCancelled(notificationId: Int, dismissedByUser: Boolean) {
             stopForeground(true)
             isForegroundService = false
@@ -178,16 +178,16 @@ class MediaPlayerService: MediaBrowserServiceCompat() {
         ) {
             if (ongoing && isForegroundService) {
                 ContextCompat.startForegroundService(
-                        applicationContext,
+                    applicationContext,
                     Intent(applicationContext, this@MediaPlayerService.javaClass)
-                        )
+                )
                 startForeground(notificationId, notification)
                 isForegroundService = true
             }
         }
     }
 
-    inner class AudioMediaPlayerBackPreparer: MediaSessionConnector.PlaybackPreparer {
+    inner class AudioMediaPlayerBackPreparer : MediaSessionConnector.PlaybackPreparer {
         override fun onCommand(
             player: Player,
             command: String,
@@ -225,7 +225,8 @@ class MediaPlayerService: MediaBrowserServiceCompat() {
 
         }
 
-        override fun onPrepareFromSearch(query: String, playWhenReady: Boolean, extras: Bundle?) = Unit
+        override fun onPrepareFromSearch(query: String, playWhenReady: Boolean, extras: Bundle?) =
+            Unit
 
         override fun onPrepareFromUri(uri: Uri, playWhenReady: Boolean, extras: Bundle?) = Unit
 
@@ -246,9 +247,9 @@ class MediaPlayerService: MediaBrowserServiceCompat() {
 
         }
 
-        private inner class PlayerEventListener: Player.Listener {
+        private inner class PlayerEventListener : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {
-                when(playbackState) {
+                when (playbackState) {
                     Player.STATE_BUFFERING,
                     Player.STATE_READY -> {
                         mediaPlayerNotificationManager.showNotification(exoPlayer)
@@ -281,12 +282,12 @@ class MediaPlayerService: MediaBrowserServiceCompat() {
 
     inner class MediaQueNavigator(
         mediaSessionCompat: MediaSessionCompat
-    ): TimelineQueueNavigator(mediaSessionCompat) {
+    ) : TimelineQueueNavigator(mediaSessionCompat) {
         override fun getMediaDescription(player: Player, windowIndex: Int)
-        : MediaDescriptionCompat {
+                : MediaDescriptionCompat {
 
-            if(windowIndex < mediaSource.audioMediaMetaData.size) {
-                return  mediaSource.audioMediaMetaData[windowIndex].description
+            if (windowIndex < mediaSource.audioMediaMetaData.size) {
+                return mediaSource.audioMediaMetaData[windowIndex].description
             }
 
             return MediaDescriptionCompat.Builder().build()

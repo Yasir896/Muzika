@@ -34,9 +34,8 @@ fun PlayerScreen(
         R.drawable.card_placeholder,
         R.drawable.moment_apart,
         R.drawable.believer,
-        R.drawable.card_placeholder,
-
-        )
+        R.drawable.card_placeholder
+    )
 
     Box(
         modifier = Modifier
@@ -184,9 +183,11 @@ fun PlayerControlRow(modifier: Modifier) {
 @Composable
 fun SongTimeRow(modifier: Modifier) {
 
-    Row(verticalAlignment = Alignment.CenterVertically,
-    horizontalArrangement = Arrangement.SpaceBetween,
-    modifier = modifier.fillMaxWidth()) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        modifier = modifier.fillMaxWidth()
+    ) {
 
         Text(
             text = "00:05",
@@ -201,5 +202,5 @@ fun SongTimeRow(modifier: Modifier) {
             color = Color(0x5FA5C0FF),
             fontWeight = FontWeight.W400
         )
-}
+    }
 }

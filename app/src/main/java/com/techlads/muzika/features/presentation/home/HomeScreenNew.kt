@@ -34,7 +34,6 @@ import com.techlads.muzika.features.presentation.PreviewUtils.dummyAudioList
 import com.techlads.muzika.ui.theme.MuzikaTheme
 
 
-
 @ExperimentalMaterialApi
 @Composable
 fun HomeScreenNew(
@@ -52,41 +51,41 @@ fun HomeScreenNew(
 
     val animatedHeight by animateDpAsState(
         targetValue = if (currentAudioPlaying == null) 0.dp
-    else BottomSheetScaffoldDefaults.SheetPeekHeight
+        else BottomSheetScaffoldDefaults.SheetPeekHeight
     )
 
     BottomSheetScaffold(
         sheetContent = {
-                       currentAudioPlaying?.let {currentAudioPlaying ->
-                           BottomBarPlayer(
-                               progress = progress,
-                               onProgressChange = onProgressChange,
-                               audio = currentAudioPlaying,
-                               isAudioPlaying = isAudioPlaying,
-                               onStart = { onStart.invoke(currentAudioPlaying) },
-                               onNext = { onNext.invoke() }
-                           )
+            currentAudioPlaying?.let { currentAudioPlaying ->
+                BottomBarPlayer(
+                    progress = progress,
+                    onProgressChange = onProgressChange,
+                    audio = currentAudioPlaying,
+                    isAudioPlaying = isAudioPlaying,
+                    onStart = { onStart.invoke(currentAudioPlaying) },
+                    onNext = { onNext.invoke() }
+                )
 
-                       }
+            }
         },
         scaffoldState = scaffoldState,
-        sheetPeekHeight = animatedHeight) {
-        
+        sheetPeekHeight = animatedHeight
+    ) {
+
         LazyColumn(contentPadding = PaddingValues(bottom = 56.dp)) {
-            items(audioList){audio: Audio ->
+            items(audioList) { audio: Audio ->
                 AudioItem(
                     audio = audio,
-                    onItemClick = { onItemClicked.invoke(audio)})
+                    onItemClick = { onItemClicked.invoke(audio) })
             }
         }
     }
 }
 
-
 @Composable
 fun AudioItem(
     audio: Audio,
-    onItemClick: (id:Long) -> Unit,
+    onItemClick: (id: Long) -> Unit,
 ) {
 
     Card(
@@ -99,7 +98,7 @@ fun AudioItem(
                 onItemClick.invoke(audio.id)
             },
 
-    ) {
+        ) {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {
@@ -138,7 +137,7 @@ fun AudioItem(
     }
 }
 
-private fun timeStampToDuration(position: Long):String {
+private fun timeStampToDuration(position: Long): String {
     val totalSeconds = kotlin.math.floor(position / 1E3).toInt()
     val minutes = totalSeconds / 60
     val remainingSeconds = totalSeconds - (minutes * 60)
@@ -146,7 +145,6 @@ private fun timeStampToDuration(position: Long):String {
     return if (position < 0) "--:--"
     else "%d:%02d".format(minutes, remainingSeconds)
 }
-
 
 @Composable
 fun BottomBarPlayer(
@@ -156,23 +154,28 @@ fun BottomBarPlayer(
     isAudioPlaying: Boolean,
     onStart: () -> Unit,
     onNext: () -> Unit,
-    ){
+) {
     Column() {
-        Row(modifier = Modifier
-            .height(56.dp)
-            .fillMaxWidth(),
+        Row(
+            modifier = Modifier
+                .height(56.dp)
+                .fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceBetween,
-        verticalAlignment = Alignment.CenterVertically) {
-            ArtistInfo(audio = audio,
-                modifier = Modifier.weight(1f))
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            ArtistInfo(
+                audio = audio,
+                modifier = Modifier.weight(1f)
+            )
 
             MediaPlayerController(
                 isAudioPlaying = isAudioPlaying,
                 onStart = { onStart.invoke() },
-                onNext = { onNext.invoke()}
+                onNext = { onNext.invoke() }
             )
         }
-        Slider(value = progress,
+        Slider(
+            value = progress,
             onValueChange = { onProgressChange.invoke(it) },
             valueRange = 0f..100f,
             colors = SliderDefaults.colors(
@@ -198,22 +201,26 @@ fun ArtistInfo(
     ) {
         PlayerIconItem(
             icon = Icons.Default.MusicNote,
-            border = BorderStroke(width = 1.dp,
-            color = MaterialTheme.colors.onSurface),
-            onClick = {}) 
+            border = BorderStroke(
+                width = 1.dp,
+                color = MaterialTheme.colors.onSurface
+            ),
+            onClick = {})
 
         Spacer(modifier = Modifier.size(4.dp))
 
         Column {
-            Text(text = audio.title,
+            Text(
+                text = audio.title,
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.h6,
                 overflow = TextOverflow.Clip,
                 maxLines = 1,
                 modifier = Modifier.weight(1f)
-           )
+            )
             Spacer(modifier = Modifier.size(4.dp))
-            Text(text = audio.title,
+            Text(
+                text = audio.title,
                 fontWeight = FontWeight.Normal,
                 style = MaterialTheme.typography.subtitle1,
                 overflow = TextOverflow.Clip,
@@ -224,7 +231,6 @@ fun ArtistInfo(
 
     }
 }
-
 
 @Composable
 fun PlayerIconItem(
@@ -252,11 +258,11 @@ fun PlayerIconItem(
         ) {
             Icon(
                 imageVector = icon,
-                contentDescription = "")
+                contentDescription = ""
+            )
         }
     }
 }
-
 
 @Composable
 fun MediaPlayerController(
@@ -268,7 +274,8 @@ fun MediaPlayerController(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .height(56.dp)
-            .padding(4.dp)) {
+            .padding(4.dp)
+    ) {
         PlayerIconItem(
             icon = if (isAudioPlaying) Icons.Default.Pause
             else Icons.Default.PlayArrow,
@@ -278,14 +285,13 @@ fun MediaPlayerController(
             onStart.invoke()
         }
         Spacer(modifier = Modifier.size(6.dp))
-        Icon(imageVector =  Icons.Default.SkipNext,
+        Icon(imageVector = Icons.Default.SkipNext,
             contentDescription = "",
-        modifier = Modifier.clickable {
-            onNext.invoke()
-        })
+            modifier = Modifier.clickable {
+                onNext.invoke()
+            })
     }
 }
-
 
 @Preview(showBackground = true)
 @Composable
@@ -296,12 +302,11 @@ fun BottomBarPreview() {
             onProgressChange = {},
             audio = dummyAudioList[0],
             isAudioPlaying = true,
-            onStart = {  }) {
-            
+            onStart = { }) {
+
         }
     }
 }
-
 
 @OptIn(ExperimentalMaterialApi::class)
 @Preview(showBackground = true)
@@ -317,7 +322,7 @@ fun HomeScreenPreview() {
             onStart = {},
             onItemClicked = {}
         ) {
-            
+
         }
     }
 }
