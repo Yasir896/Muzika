@@ -80,6 +80,9 @@ class MainActivity : ComponentActivity() {
                             },
                             onNext = {
                                 audioViewModel.skipToNext()
+                            },
+                            onPrevious = {
+                                audioViewModel.skipToPrevious()
                             }
                         )
                         //AppNavigation(navController = navController)

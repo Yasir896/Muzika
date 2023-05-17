@@ -11,10 +11,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.MusicNote
-import androidx.compose.material.icons.filled.Pause
-import androidx.compose.material.icons.filled.PlayArrow
-import androidx.compose.material.icons.filled.SkipNext
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -45,7 +42,8 @@ fun HomeScreenNew(
     currentAudioPlaying: Audio?,
     onStart: (Audio) -> Unit,
     onItemClicked: (Audio) -> Unit,
-    onNext: () -> Unit
+    onNext: () -> Unit,
+    onPrevious: () -> Unit
 ) {
 
     val scaffoldState = rememberBottomSheetScaffoldState()
@@ -64,7 +62,8 @@ fun HomeScreenNew(
                     audio = currentAudioPlaying,
                     isAudioPlaying = isAudioPlaying,
                     onStart = { onStart.invoke(currentAudioPlaying) },
-                    onNext = { onNext.invoke() }
+                    onNext = { onNext.invoke() },
+                    onPrevious = { onPrevious.invoke() }
                 )
 
             }
@@ -162,6 +161,7 @@ fun BottomBarPlayer(
     isAudioPlaying: Boolean,
     onStart: () -> Unit,
     onNext: () -> Unit,
+    onPrevious: () -> Unit,
 ) {
     Column() {
         Row(
@@ -179,7 +179,8 @@ fun BottomBarPlayer(
             MediaPlayerController(
                 isAudioPlaying = isAudioPlaying,
                 onStart = { onStart.invoke() },
-                onNext = { onNext.invoke() }
+                onNext = { onNext.invoke() },
+                onPrevious = { onPrevious.invoke() }
             )
         }
         Slider(
@@ -277,6 +278,7 @@ fun MediaPlayerController(
     isAudioPlaying: Boolean,
     onStart: () -> Unit,
     onNext: () -> Unit,
+    onPrevious: () -> Unit,
 ) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -284,6 +286,13 @@ fun MediaPlayerController(
             .height(56.dp)
             .padding(4.dp)
     ) {
+
+        Icon(imageVector = Icons.Default.SkipPrevious,
+            contentDescription = "",
+            modifier = Modifier.clickable {
+                onPrevious.invoke()
+            })
+        Spacer(modifier = Modifier.size(6.dp))
         PlayerIconItem(
             icon = if (isAudioPlaying) Icons.Default.Pause
             else Icons.Default.PlayArrow,
@@ -301,36 +310,3 @@ fun MediaPlayerController(
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun BottomBarPreview() {
-    MuzikaTheme() {
-        BottomBarPlayer(
-            progress = 50f,
-            onProgressChange = {},
-            audio = dummyAudioList[0],
-            isAudioPlaying = true,
-            onStart = { }) {
-
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterialApi::class)
-@Preview(showBackground = true)
-@Composable
-fun HomeScreenPreview() {
-    MuzikaTheme() {
-        HomeScreenNew(
-            progress = 50f,
-            onProgressChange = {},
-            isAudioPlaying = true,
-            audioList = dummyAudioList,
-            currentAudioPlaying = dummyAudioList[0],
-            onStart = {},
-            onItemClicked = {}
-        ) {
-
-        }
-    }
-}

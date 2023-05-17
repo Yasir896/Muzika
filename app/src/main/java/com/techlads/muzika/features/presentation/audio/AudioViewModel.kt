@@ -114,6 +114,9 @@ class AudioViewModel @Inject constructor(
         serviceConnection.skipToNext()
     }
 
+    fun skipToPrevious() {
+        serviceConnection.skipToPrevious()
+    }
     fun seekTo(value: Float) {
         serviceConnection.transportControl.seekTo(
             (currentDuration * value / 100f).toLong()
