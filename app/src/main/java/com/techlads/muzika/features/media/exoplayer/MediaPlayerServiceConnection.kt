@@ -15,7 +15,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import javax.inject.Inject
 
-class MediaPlayerServiceConnection @Inject constructor(@ApplicationContext context: Context
+class MediaPlayerServiceConnection @Inject constructor(
+    @ApplicationContext context: Context
 ) {
 
     private val _playbackState: MutableStateFlow<PlaybackStateCompat?> =
@@ -59,13 +60,13 @@ class MediaPlayerServiceConnection @Inject constructor(@ApplicationContext conte
 
     fun fastForward(seconds: Int = 10) {
         playbackState.value?.currentPosition?.let {
-            transportControl.seekTo( it + seconds * 1000)
+            transportControl.seekTo(it + seconds * 1000)
         }
     }
 
     fun rewind(seconds: Int = 10) {
         playbackState.value?.currentPosition?.let {
-            transportControl.seekTo( it - seconds * 1000)
+            transportControl.seekTo(it - seconds * 1000)
         }
     }
 
@@ -76,6 +77,7 @@ class MediaPlayerServiceConnection @Inject constructor(@ApplicationContext conte
     fun skipToPrevious() {
         transportControl.skipToPrevious()
     }
+
     fun subscribe(
         parentId: String,
         callBack: MediaBrowserCompat.SubscriptionCallback
@@ -90,13 +92,13 @@ class MediaPlayerServiceConnection @Inject constructor(@ApplicationContext conte
         mediaBrowser.unsubscribe(parentId, callBack)
     }
 
-    fun refreshMediaBrowserChildren(){
+    fun refreshMediaBrowserChildren() {
         mediaBrowser.sendCustomAction(Constant.REFRESH_MEDIA_PLAY_ACTION, null, null)
     }
 
     private inner class MediaBrowserConnectionCallback(
         private val context: Context
-    ): MediaBrowserCompat.ConnectionCallback() {
+    ) : MediaBrowserCompat.ConnectionCallback() {
         override fun onConnected() {
             _isConnected.value = true
             mediaControllerCompat = MediaControllerCompat(
@@ -117,9 +119,7 @@ class MediaPlayerServiceConnection @Inject constructor(@ApplicationContext conte
     }
 
 
-
-
-    private inner class MediaControllerCallback: MediaControllerCompat.Callback() {
+    private inner class MediaControllerCallback : MediaControllerCompat.Callback() {
         override fun onPlaybackStateChanged(state: PlaybackStateCompat?) {
             super.onPlaybackStateChanged(state)
             _playbackState.value = state

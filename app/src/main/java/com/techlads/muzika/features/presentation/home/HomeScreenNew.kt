@@ -70,20 +70,22 @@ fun HomeScreenNew(
         },
         scaffoldState = scaffoldState,
 
-        sheetPeekHeight = animatedHeight) {
-        
+        sheetPeekHeight = animatedHeight
+    ) {
+
         LazyColumn(
             flingBehavior = ScrollableDefaults.flingBehavior(),
             userScrollEnabled = true,
-            contentPadding = PaddingValues(bottom = 56.dp)) {
-            items( count = audioList.size,
-                key = {audioList[it].id},
-            itemContent = {index ->
-                val audio = audioList[index]
-                AudioItem(
-                    audio = audio,
-                    onItemClick = { onItemClicked.invoke(audio)})
-            })
+            contentPadding = PaddingValues(bottom = 56.dp)
+        ) {
+            items(count = audioList.size,
+                key = { audioList[it].id },
+                itemContent = { index ->
+                    val audio = audioList[index]
+                    AudioItem(
+                        audio = audio,
+                        onItemClick = { onItemClicked.invoke(audio) })
+                })
 
         }
     }
@@ -96,7 +98,6 @@ fun AudioItem(
 ) {
 
     Card(
-        //shape = RoundedCornerShape(topStart = 16.dp, topEnd = 16.dp),
         backgroundColor = MaterialTheme.colors.primary,
         modifier = Modifier
             .fillMaxWidth()
@@ -104,8 +105,7 @@ fun AudioItem(
             .clickable {
                 onItemClick.invoke(audio.id)
             },
-
-        ) {
+    ) {
         Row(
             verticalAlignment = Alignment.CenterVertically
         ) {

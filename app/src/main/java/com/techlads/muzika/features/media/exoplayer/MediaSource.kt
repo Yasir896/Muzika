@@ -19,20 +19,20 @@ class MediaSource @Inject constructor(private val repository: AudioRepository) {
     var audioMediaMetaData: List<MediaMetadataCompat> = emptyList()
 
     private var state: AudioSourceState = AudioSourceState.STATE_CREATED
-    set(value) {
-        if (value == AudioSourceState.STATE_CREATED
-            || value == AudioSourceState.STATE_ERROR
-        ) {
-            synchronized(onReadyListeners) {
-                field = value
-                onReadyListeners.forEach{listener: OnReadyListener ->
-                    listener.invoke(isReady)
+        set(value) {
+            if (value == AudioSourceState.STATE_CREATED
+                || value == AudioSourceState.STATE_ERROR
+            ) {
+                synchronized(onReadyListeners) {
+                    field = value
+                    onReadyListeners.forEach { listener: OnReadyListener ->
+                        listener.invoke(isReady)
+                    }
                 }
+            } else {
+                field = value
             }
-        } else {
-            field = value
         }
-    }
 
 
     suspend fun load() {
@@ -104,12 +104,13 @@ class MediaSource @Inject constructor(private val repository: AudioRepository) {
         onReadyListeners.clear()
         state = AudioSourceState.STATE_CREATED
     }
+
     fun whenReady(listener: OnReadyListener): Boolean {
         return if (state == AudioSourceState.STATE_CREATED
             || state == AudioSourceState.STATE_INITIALIZING
         ) {
-          onReadyListeners += listener
-          false
+            onReadyListeners += listener
+            false
         } else {
             listener.invoke(isReady)
             true
@@ -117,11 +118,11 @@ class MediaSource @Inject constructor(private val repository: AudioRepository) {
     }
 
     private val isReady: Boolean
-    get() = state == AudioSourceState.STATE_INITIALIZED
+        get() = state == AudioSourceState.STATE_INITIALIZED
 
 }
 
-enum class AudioSourceState{
+enum class AudioSourceState {
     STATE_CREATED,
     STATE_INITIALIZING,
     STATE_INITIALIZED,
