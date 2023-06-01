@@ -1,3 +1,3 @@
 # Muzika
-Music Player with Jetpack compose and Exo Player.
+Music Player built with Jetpack compose plays offline music with Exo Player.
 
