@@ -24,14 +24,14 @@ fun AppNavigation(navController: NavHostController) {
             //HomeScreenNew()
         }
 
-        /*composable(route = Screens.HomeScreen.route,
+        composable(route = Screens.HomeScreen.route,
             enterTransition = { EnterTransition.None },
             exitTransition = { ExitTransition.None }) {
             HomeScreen(
                 onMenuClick = { navController.navigate(Screens.LikedSongsScreen.route) },
                 onSongItemClick = { navController.navigate(Screens.PlayerScreen.route) }
             )
-        }*/
+        }
 
         composable(route = Screens.LikedSongsScreen.route,
             enterTransition = { tabEnterTransition() },

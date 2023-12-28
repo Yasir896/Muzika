@@ -96,14 +96,3 @@ fun HomeScreen(
         }
     }
 }
-
-@Composable
-@Preview
-fun PreviewHomeScreen() {
-    MaterialTheme {
-        HomeScreen(
-            onMenuClick = {},
-            onSongItemClick = { }
-        )
-    }
-}
